@@ -291,6 +291,7 @@ function loadSave(radio, file) {
             discoveredWaylandBoots: 0,
             discoveredHungrySpirit: 0,
             hasMaxGoldIntegrity: 0,
+            unlockedKurtzStache: 0,
             relicWhip: 0,
             relicHat: 0,
             relicCircinus: 0,
@@ -353,6 +354,7 @@ function loadSave(radio, file) {
             settingsOut.flags.discoveredWaylandBoots = 1;
             settingsOut.flags.discoveredHungrySpirit = 1;
             settingsOut.flags.hasMaxGoldIntegrity = 1;
+            settingsOut.flags.unlockedKurtzStache = 1;
             settingsOut.flags.relicWhip = 0;
             settingsOut.flags.relicHat = 0;
             settingsOut.flags.relicCircinus = 0;
@@ -367,6 +369,7 @@ function loadSave(radio, file) {
                 settingsOut.flags[key] = parseInt(value);
             });
             settingsOut.flags.hasMaxGoldIntegrity = settingsOut.flags["gold_keep_percent"] === 95;
+            settingsOut.flags.unlockedKurtzStache = saveData.runHistory.length >= 4;
             break;
     }
     return settingsOut;
@@ -11229,6 +11232,9 @@ function start(seed) {
     if (settings.flags.hasMaxGoldIntegrity) {
         toggleWeight(43);
     }
+    if (!settings.flags.unlockedKurtzStache) {
+        toggleWeight(146);
+    }
     if (e$("altar").value) {
         toggleWeight(e$("altar").value);
     }
@@ -11264,7 +11270,6 @@ function start(seed) {
             e$(zone + i).appendChild(relicRoom);
             let relic;
             if (((zoneID + i) === 1) && e$("new-save-radio").checked) {
-                toggleWeight(146, "relic");
                 relic = nextItem("relicStarter");
             }
             else {
