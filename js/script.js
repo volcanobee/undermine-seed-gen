@@ -11205,6 +11205,37 @@ function shop(zone, level) {
         e$(shopName).appendChild(html[i]);
     });
 }
+function shoguul(seed, zone, level) {
+    const shoguulName = `shoguul-${zone}-${level}`;
+    
+    const shoguulRoom = document.createElement("div");
+    shoguulRoom.id = shoguulName;
+    shoguulRoom.classList.add("icon-shoguul");
+    e$(zone + level).appendChild(shoguulRoom);
+
+    nextRand(seed + level);
+    const Lrelic = nextItem("relicLegendary");
+    toggleWeight(Lrelic.masterIndex);
+    const Rrelic = nextItem("relicLegendary");
+    toggleWeight(Lrelic.masterIndex);
+
+    const curseRandom = new Random(seed + level);
+    var curseResult = curseRandom.rangeInclusive(0, 100);
+    const curseRollHtml = document.createElement("div");
+    curseRollHtml.classList.add('curse-roll');
+    curseRollHtml.innerHTML = Math.floor(curseResult / 5);
+    e$(shoguulName).appendChild(curseRollHtml);
+    
+    const LrelicHtml = document.createElement("div");
+    LrelicHtml.classList.add('icon-relic');
+    LrelicHtml.innerHTML = Lrelic.relic.display;
+    e$(shoguulName).appendChild(LrelicHtml);
+
+    const RrelicHtml = document.createElement("div");
+    RrelicHtml.classList.add('icon-relic');
+    RrelicHtml.innerHTML = Rrelic.relic.display;
+    e$(shoguulName).appendChild(RrelicHtml);
+}
 function randomSeed() {
     e$("seed-input").value = (seedRand.range()).toString();
     loadSeed();
@@ -11282,6 +11313,9 @@ function start(seed) {
             e$("relic" + zone + i).appendChild(relicText);
             if ((zoneID + i) > 1) {
                 shop(zone, i);
+            }
+            if (((zoneID + i) !== 1) || !e$("new-save-radio").checked) {
+                shoguul(seed, zone, i);
             }
         }
     }

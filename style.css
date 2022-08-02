@@ -112,22 +112,28 @@ fieldset > p {
 	margin-bottom:1em;
 }
 
-.icon-relicOn, .icon-shop {
+.icon-relicOn, .icon-shop, .icon-shoguul {
 	margin-left: 40px;
 	border-bottom: 1px solid #aaa;
 }
 
-.icon-relic::Before, .icon-item::Before, .icon-potion::Before, .icon-relicOn::Before, .icon-shop::Before, .icon-food::Before  {
-	display:inline-block;
-	height:32px;
-	width:32px;
-	position:relative;
+.icon-relic::Before, .icon-item::Before, .icon-potion::Before, .icon-relicOn::Before, .icon-shop::Before, .icon-food::Before, .icon-shoguul::Before {
+	display: inline-block;
+	height: 32px;
+	width: 32px;
+	position: relative;
 	vertical-align: middle;
 }
 
-.icon-relicOn::Before, .icon-shop::Before{
+.icon-relicOn::Before, .icon-shop::Before, .icon-shoguul::Before, .curse-roll {
 	position:absolute;
 	margin-left:-40px;
+}
+
+.curse-roll {
+	width: 32px;
+	margin-top: 32px;
+	text-align: center;
 }
 
 .icon-potion::Before {
@@ -149,4 +155,7 @@ fieldset > p {
 }
 .icon-shop::Before {
 	content: url(img/MapIcon_Shop.png);
+}
+.icon-shoguul::Before {
+	content: url(img/ach_demon_deal.png)
 }
