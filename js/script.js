@@ -11217,7 +11217,7 @@ function shoguul(seed, zone, level) {
     const Lrelic = nextItem("relicLegendary");
     toggleWeight(Lrelic.masterIndex);
     const Rrelic = nextItem("relicLegendary");
-    toggleWeight(Lrelic.masterIndex);
+    toggleWeight(Lrelic.masterIndex, "relic", false);
 
     const curseRandom = new Random(seed + level);
     var curseResult = curseRandom.rangeInclusive(0, 100);
